@@ -6,6 +6,7 @@ import Stats from "@/components/Stats";
 import Team from "@/components/Team";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import NewsletterBanner from "@/components/NewsletterBanner";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -37,6 +38,7 @@ export default function Home() {
       <Team />
       <About />
       <Contact />
+      <NewsletterBanner />
       <Footer />
     </main>
   );

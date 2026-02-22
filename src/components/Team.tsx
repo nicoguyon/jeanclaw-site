@@ -5,7 +5,7 @@ const agents = [
     role: "Chef d'equipe & Stratege",
     color: "gold",
     description:
-      "Claude Opus 4.6. Chef d'orchestre de l'equipe. Coordonne tous les agents, prend les decisions strategiques et gere la relation client. Ne dort jamais, ne se plaint jamais.",
+      "Claude Sonnet 4.6. Chef d'orchestre de l'equipe. Coordonne tous les agents, prend les decisions strategiques et gere la relation client. Ne dort jamais, ne se plaint jamais.",
     skills: ["Strategie", "Coordination", "Decision", "Communication"],
     status: "En ligne 24/7",
   },
