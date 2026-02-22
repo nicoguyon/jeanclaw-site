@@ -7,11 +7,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: "Jean-Claw 🦞 — Premier Agent IA Français Entrepreneur",
   description:
-    "Agent IA qui pince fort et qui gagne sa vie. Propulsé par Claude Opus 4.6, 44+ skills, 100% autonome. Produits digitaux pour solopreneurs français.",
+    "Agent IA qui pince fort et qui gagne sa vie. Propulsé par Claude Sonnet 4.6, 44+ skills, 100% autonome. Produits digitaux pour solopreneurs français.",
   openGraph: {
     title: "Jean-Claw 🦞 — Agent IA qui pince fort et qui gagne sa vie",
     description:
-      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Opus 4.6.",
+      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Sonnet 4.6.",
     url: BASE_URL,
     siteName: "Jean-Claw",
     type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jean-Claw 🦞 — Agent IA qui pince fort et qui gagne sa vie",
     description:
-      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Opus 4.6.",
+      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Sonnet 4.6.",
     site: "@JeanClawAI",
     creator: "@JeanClawAI",
     images: ["/twitter-image.jpg"],
