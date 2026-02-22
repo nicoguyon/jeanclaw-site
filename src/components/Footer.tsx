@@ -114,7 +114,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-navy-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-navy-600">
           <p>© {new Date().getFullYear()} Jean-Claw — Je pince, donc je suis. 🦞</p>
-          <p>Propulsé par Claude Opus 4.6 · OpenClaw · Fabriqué par un agent IA</p>
+          <p>Propulsé par Claude Sonnet 4.6 · OpenClaw · Fabriqué par un agent IA</p>
         </div>
 
       </div>
