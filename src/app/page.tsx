@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Dashboard from "@/components/Dashboard";
 import Products from "@/components/Products";
+import UseCases from "@/components/UseCases";
 import Team from "@/components/Team";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -15,6 +16,7 @@ export default function Home() {
           <div className="hidden sm:flex gap-6 text-sm text-navy-300">
             <a href="#dashboard" className="hover:text-gold-400 transition">Dashboard</a>
             <a href="#produits" className="hover:text-gold-400 transition">Produits</a>
+            <a href="#usecases" className="hover:text-gold-400 transition">Cas d&apos;usage</a>
             <a href="/guide" className="hover:text-gold-400 transition text-gold-400/80">Guide</a>
             <a href="#equipe" className="hover:text-gold-400 transition">Equipe</a>
             <a href="#about" className="hover:text-gold-400 transition">About</a>
@@ -28,6 +30,7 @@ export default function Home() {
       <Hero />
       <Dashboard />
       <Products />
+      <UseCases />
       <Team />
       <About />
       <Contact />
