@@ -151,13 +151,27 @@ export default function UseCases() {
 
               {/* Illustration */}
               <div className="relative w-full h-48 overflow-hidden flex-shrink-0">
-                <Image
-                  src={uc.image}
-                  alt={`Illustration ${uc.title}`}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+                {"image" in uc && uc.image ? (
+                  <Image
+                    src={uc.image}
+                    alt={`Illustration ${uc.title}`}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : (
+                  /* Neon gradient fallback for cards without an image */
+                  <div
+                    className="absolute inset-0 flex items-center justify-center"
+                    style={{
+                      background: `radial-gradient(ellipse at 50% 60%, ${uc.glow} 0%, rgba(8,14,24,0.95) 70%)`,
+                    }}
+                  >
+                    <span className="text-8xl select-none opacity-30 transition-transform duration-500 group-hover:scale-110">
+                      {uc.emoji}
+                    </span>
+                  </div>
+                )}
                 {/* Gradient fade into card body */}
                 <div
                   className="absolute inset-0"
