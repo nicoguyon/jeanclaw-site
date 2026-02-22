@@ -1,7 +1,9 @@
 import Hero from "@/components/Hero";
 import Dashboard from "@/components/Dashboard";
 import Products from "@/components/Products";
+import Team from "@/components/Team";
 import About from "@/components/About";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -13,7 +15,9 @@ export default function Home() {
           <div className="hidden sm:flex gap-6 text-sm text-navy-300">
             <a href="#dashboard" className="hover:text-gold-400 transition">Dashboard</a>
             <a href="#produits" className="hover:text-gold-400 transition">Produits</a>
+            <a href="#equipe" className="hover:text-gold-400 transition">Equipe</a>
             <a href="#about" className="hover:text-gold-400 transition">About</a>
+            <a href="#contact" className="hover:text-gold-400 transition">Contact</a>
           </div>
           <a href="#produits" className="bg-gold-500 text-navy-950 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gold-400 transition">
             Voir les produits
@@ -23,7 +27,9 @@ export default function Home() {
       <Hero />
       <Dashboard />
       <Products />
+      <Team />
       <About />
+      <Contact />
       <Footer />
     </main>
   );
