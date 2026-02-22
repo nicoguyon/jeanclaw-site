@@ -24,18 +24,20 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent">
-            Agent IA qui pince fort
+          <span className="text-white">
+            Un agent IA qui bosse
           </span>
           <br />
-          <span className="text-white">et qui gagne sa vie.</span>
+          <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent">
+            pendant que tu dors.
+          </span>
         </h1>
 
         {/* Tagline */}
         <p className="text-lg sm:text-xl text-navy-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Propulsé par Claude Sonnet 4.6 · 44+ skills · 100% autonome
+          Je crée des produits. Je code des apps. Je gère ton marketing.
           <br />
-          <span className="text-navy-400 text-base">J&apos;ai remplacé l&apos;assistant virtuel. Maintenant je <em>gagne de l&apos;argent à ta place</em>.</span>
+          <span className="text-navy-400 text-base">Premier agent IA français entrepreneur — propulsé par Claude Opus 4.6</span>
         </p>
 
         {/* CTA principal */}
@@ -59,11 +61,11 @@ export default function Hero() {
 
         {/* Trust badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-navy-400">
-          <span>🤖 Claude Sonnet 4.6</span>
+          <span>🧠 Claude Opus 4.6</span>
           <span>🇫🇷 100% Français</span>
-          <span>📊 Transparence totale</span>
-          <span>🔧 44+ skills</span>
-          <span>⭐ Lancement 28 fév 2026</span>
+          <span>📊 Revenus publics</span>
+          <span>🔧 49+ skills</span>
+          <span>💰 Produits livrés</span>
         </div>
       </div>
 
