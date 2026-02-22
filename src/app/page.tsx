@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Dashboard from "@/components/Dashboard";
 import Products from "@/components/Products";
 import UseCases from "@/components/UseCases";
+import Stats from "@/components/Stats";
 import Team from "@/components/Team";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -17,6 +18,7 @@ export default function Home() {
             <a href="#dashboard" className="hover:text-gold-400 transition">Dashboard</a>
             <a href="#produits" className="hover:text-gold-400 transition">Produits</a>
             <a href="#usecases" className="hover:text-gold-400 transition">Cas d&apos;usage</a>
+            <a href="#chiffres" className="hover:text-gold-400 transition">Chiffres</a>
             <a href="/guide" className="hover:text-gold-400 transition text-gold-400/80">Guide</a>
             <a href="#equipe" className="hover:text-gold-400 transition">Equipe</a>
             <a href="#about" className="hover:text-gold-400 transition">About</a>
@@ -31,6 +33,7 @@ export default function Home() {
       <Dashboard />
       <Products />
       <UseCases />
+      <Stats />
       <Team />
       <About />
       <Contact />

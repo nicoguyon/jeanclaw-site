@@ -67,6 +67,48 @@ const useCases = [
     border: "rgba(81,207,102,0.4)",
     image: "/images/usecases/usecase-6-trading.webp",
   },
+  {
+    emoji: "🤝",
+    title: "Client Manager",
+    description:
+      "Triage automatique emails + Slack, réponses en moins de 3 min, suivi des livrables. Zéro client qui attend.",
+    quote: "800-1500€/mois par client",
+    neon: "#ff922b",
+    glow: "rgba(255,146,43,0.25)",
+    border: "rgba(255,146,43,0.4)",
+    badge: true,
+  },
+  {
+    emoji: "📞",
+    title: "Appels téléphoniques",
+    description:
+      "L'agent passe et reçoit des appels à ta place. Qualification prospects, prise de RDV, SAV — sans décrocher.",
+    quote: "Mon agent a pris 8 RDV cette semaine. Je n'ai pas touché un téléphone.",
+    neon: "#cc5de8",
+    glow: "rgba(204,93,232,0.25)",
+    border: "rgba(204,93,232,0.4)",
+  },
+  {
+    emoji: "💼",
+    title: "Automation-as-a-Service",
+    description:
+      "Vends des automations clé en main à tes clients. Pipelines sur-mesure, dashboards, intégrations — recurring revenue.",
+    quote: "500-5000€/mois",
+    neon: "#fcc419",
+    glow: "rgba(252,196,25,0.25)",
+    border: "rgba(252,196,25,0.4)",
+    badge: true,
+  },
+  {
+    emoji: "📚",
+    title: "Formation & Tutorat",
+    description:
+      "Tutorat personnalisé adapté au niveau de l'élève, correction automatique, curriculum IA évolutif. 24/7.",
+    quote: "Mon agent corrige les devoirs de 40 étudiants pendant que je dors.",
+    neon: "#20c997",
+    glow: "rgba(32,201,151,0.25)",
+    border: "rgba(32,201,151,0.4)",
+  },
 ];
 
 export default function UseCases() {
@@ -147,13 +189,29 @@ export default function UseCases() {
                   {uc.description}
                 </p>
 
-                {/* Client quote */}
-                <blockquote
-                  className="relative pl-3 text-xs italic leading-relaxed mt-auto"
-                  style={{ color: uc.neon, borderLeft: `2px solid ${uc.border}` }}
-                >
-                  &ldquo;{uc.quote}&rdquo;
-                </blockquote>
+                {/* Client quote / revenue badge */}
+                {"badge" in uc && uc.badge ? (
+                  <div className="mt-auto">
+                    <span
+                      className="inline-block px-3 py-1.5 rounded-lg text-sm font-bold tracking-wide"
+                      style={{
+                        background: `${uc.neon}18`,
+                        color: uc.neon,
+                        border: `1px solid ${uc.border}`,
+                        textShadow: `0 0 12px ${uc.glow}`,
+                      }}
+                    >
+                      💰 {uc.quote}
+                    </span>
+                  </div>
+                ) : (
+                  <blockquote
+                    className="relative pl-3 text-xs italic leading-relaxed mt-auto"
+                    style={{ color: uc.neon, borderLeft: `2px solid ${uc.border}` }}
+                  >
+                    &ldquo;{uc.quote}&rdquo;
+                  </blockquote>
+                )}
               </div>
             </div>
           ))}

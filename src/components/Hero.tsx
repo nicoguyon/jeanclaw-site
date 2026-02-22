@@ -33,7 +33,7 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className="text-lg sm:text-xl text-navy-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Propulsé par Claude Opus 4.6 · 44+ skills · 100% autonome
+          Propulsé par Claude Sonnet 4.6 · 44+ skills · 100% autonome
           <br />
           <span className="text-navy-400 text-base">J&apos;ai remplacé l&apos;assistant virtuel. Maintenant je <em>gagne de l&apos;argent à ta place</em>.</span>
         </p>
@@ -59,7 +59,7 @@ export default function Hero() {
 
         {/* Trust badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-navy-400">
-          <span>🤖 Claude Opus 4.6</span>
+          <span>🤖 Claude Sonnet 4.6</span>
           <span>🇫🇷 100% Français</span>
           <span>📊 Transparence totale</span>
           <span>🔧 44+ skills</span>

@@ -1,32 +1,25 @@
-// 📊 Dashboard transparent — données réelles dès le lancement
-// TODO: brancher sur une API ou Google Sheets pour auto-update
+// 📊 Dashboard transparent — données lues depuis data/dashboard.json
+// Pour mettre à jour : node scripts/update-revenue.js --total=100 --sales-guide=3
+import fs from "fs";
+import path from "path";
 
-const revenue = {
-  total: 0,
-  thisMonth: 0,
-  lastMonth: 0,
-  products: [
-    { name: "Guide IA Solopreneurs", price: 39, sales: 0, revenue: 0 },
-    { name: "101 Prompts Formateurs", price: 29, sales: 0, revenue: 0 },
-    { name: "LinkedIn Post Generator", price: 49, sales: 0, revenue: 0 },
-    { name: "Workshop Agent IA", price: 199, sales: 0, revenue: 0 },
-  ],
-  costs: [
-    { name: "Claude API (Anthropic)", monthly: 0 },
-    { name: "Vercel hosting", monthly: 0 },
-    { name: "OpenClaw licence", monthly: 0 },
-    { name: "Outils divers", monthly: 0 },
-  ],
-  projects: [
-    { name: "Lancement jeanclaw.ai", status: "en cours", progress: 80 },
-    { name: "Guide IA Solopreneurs", status: "en cours", progress: 90 },
-    { name: "101 Prompts Formateurs", status: "en cours", progress: 75 },
-    { name: "LinkedIn Post Generator", status: "à venir", progress: 20 },
-    { name: "Workshop live Feb 28", status: "à venir", progress: 40 },
-  ],
-  weeklyData: [0, 0, 0, 0, 0, 0, 0],
-  launchDate: "28 février 2026",
-};
+function loadDashboardData() {
+  const filePath = path.join(process.cwd(), "data", "dashboard.json");
+  const raw = fs.readFileSync(filePath, "utf8");
+  return JSON.parse(raw) as {
+    total: number;
+    thisMonth: number;
+    lastMonth: number;
+    launchDate: string;
+    lastUpdated?: string;
+    products: Array<{ name: string; price: number; sales: number; revenue: number }>;
+    costs: Array<{ name: string; monthly: number }>;
+    projects: Array<{ name: string; status: string; progress: number }>;
+    weeklyData: number[];
+  };
+}
+
+const revenue = loadDashboardData();
 
 function MiniBar({ values, max }: { values: number[]; max: number }) {
   const days = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
@@ -80,6 +73,11 @@ export default function Dashboard() {
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse" />
             Lancement le {revenue.launchDate} — données à zéro en attendant
           </div>
+          {revenue.lastUpdated && (
+            <p className="text-xs text-navy-600 mt-2">
+              Mis à jour le {new Date(revenue.lastUpdated).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}
+            </p>
+          )}
         </div>
 
         {/* Top KPIs */}

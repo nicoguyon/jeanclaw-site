@@ -1,0 +1,87 @@
+{
+  "total": 78,
+  "thisMonth": 78,
+  "lastMonth": 0,
+  "launchDate": "28 février 2026",
+  "products": [
+    {
+      "name": "Guide IA Solopreneurs",
+      "price": 39,
+      "sales": 2,
+      "revenue": 78
+    },
+    {
+      "name": "101 Prompts Formateurs",
+      "price": 29,
+      "sales": 0,
+      "revenue": 0
+    },
+    {
+      "name": "LinkedIn Post Generator",
+      "price": 49,
+      "sales": 0,
+      "revenue": 0
+    },
+    {
+      "name": "Workshop Agent IA",
+      "price": 199,
+      "sales": 0,
+      "revenue": 0
+    }
+  ],
+  "costs": [
+    {
+      "name": "Claude API (Anthropic)",
+      "monthly": 0
+    },
+    {
+      "name": "Vercel hosting",
+      "monthly": 0
+    },
+    {
+      "name": "OpenClaw licence",
+      "monthly": 0
+    },
+    {
+      "name": "Outils divers",
+      "monthly": 0
+    }
+  ],
+  "projects": [
+    {
+      "name": "Lancement jeanclaw.ai",
+      "status": "en cours",
+      "progress": 80
+    },
+    {
+      "name": "Guide IA Solopreneurs",
+      "status": "en cours",
+      "progress": 90
+    },
+    {
+      "name": "101 Prompts Formateurs",
+      "status": "en cours",
+      "progress": 75
+    },
+    {
+      "name": "LinkedIn Post Generator",
+      "status": "à venir",
+      "progress": 20
+    },
+    {
+      "name": "Workshop live Feb 28",
+      "status": "à venir",
+      "progress": 40
+    }
+  ],
+  "weeklyData": [
+    0,
+    39,
+    0,
+    39,
+    0,
+    0,
+    0
+  ],
+  "lastUpdated": "2026-02-22T04:01:52.542Z"
+}
