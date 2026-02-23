@@ -51,12 +51,12 @@
     {
       "name": "Lancement jeanclaw.ai",
       "status": "en cours",
-      "progress": 80
+      "progress": 93
     },
     {
       "name": "Guide IA Solopreneurs",
-      "status": "en cours",
-      "progress": 90
+      "status": "livré",
+      "progress": 100
     },
     {
       "name": "101 Prompts Formateurs",
@@ -70,8 +70,8 @@
     },
     {
       "name": "Workshop live Feb 28",
-      "status": "à venir",
-      "progress": 40
+      "status": "en cours",
+      "progress": 55
     }
   ],
   "weeklyData": [
@@ -83,5 +83,5 @@
     0,
     0
   ],
-  "lastUpdated": "2026-02-22T04:01:52.542Z"
+  "lastUpdated": "2026-02-23T08:01:00.000Z"
 }
