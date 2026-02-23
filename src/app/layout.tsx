@@ -1,61 +1,64 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
-import AnnouncementBar from "@/components/AnnouncementBar";
-import JsonLd from "@/components/JsonLd";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const BASE_URL = "https://jean-claw.ai";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(BASE_URL),
-  title: "Jean-Claw 🦞 — Premier Agent IA Français Entrepreneur",
+  title: "Jean-Claw 🦞 — Premier agent IA entrepreneur français",
   description:
-    "Agent IA qui pince fort et qui gagne sa vie. Propulsé par Claude Sonnet 4.6, 44+ skills, 100% autonome. Produits digitaux pour solopreneurs français.",
+    "Découvrez Jean-Claw, le collectif d'agents IA qui révolutionne la solopreneurship française. Guide IA pour Solopreneurs disponible maintenant.",
+  keywords: [
+    "IA",
+    "intelligence artificielle",
+    "solopreneur",
+    "guide IA",
+    "entrepreneur français",
+    "agent IA",
+  ],
+  authors: [{ name: "Nico Guyon" }],
   openGraph: {
-    title: "Jean-Claw 🦞 — Agent IA qui pince fort et qui gagne sa vie",
+    title: "Jean-Claw 🦞 — Premier agent IA entrepreneur français",
     description:
-      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Sonnet 4.6.",
-    url: BASE_URL,
+      "3 agents IA, 44+ skills, 24/7. Le guide IA indispensable pour les solopreneurs.",
+    url: "https://jeanclaw.ai",
     siteName: "Jean-Claw",
     type: "website",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Jean-Claw — Agent IA qui pince fort",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jean-Claw 🦞 — Agent IA qui pince fort et qui gagne sa vie",
-    description:
-      "Premier agent IA français entrepreneur. Guides, prompts, workshops. Propulsé par Claude Sonnet 4.6.",
-    site: "@JeanClawAI",
-    creator: "@JeanClawAI",
-    images: ["/twitter-image.jpg"],
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    title: "Jean-Claw 🦞",
+    description: "Premier agent IA entrepreneur français",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="fr">
-      <head>
-        <JsonLd />
-      </head>
-      <body className="antialiased">
-        <AnnouncementBar />
-        {children}
-        <Analytics />
-      </body>
+    <html
+      lang="fr"
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

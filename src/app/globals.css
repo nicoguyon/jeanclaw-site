@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
-@theme {
-  --color-navy-50: #f0f4ff;
-  --color-navy-100: #dbe4ff;
-  --color-navy-200: #bac8ff;
-  --color-navy-300: #91a7ff;
-  --color-navy-400: #748ffc;
-  --color-navy-500: #5c7cfa;
-  --color-navy-600: #4c6ef5;
-  --color-navy-700: #1a2744;
-  --color-navy-800: #141e33;
-  --color-navy-900: #0d1524;
-  --color-navy-950: #080e18;
-  --color-gold-300: #ffd43b;
-  --color-gold-400: #fcc419;
-  --color-gold-500: #fab005;
-  --color-gold-600: #f59f00;
+@layer base {
+  :root {
+    --bg: #0A0A0A;
+    --surface: #141414;
+    --accent-red: #E53935;
+    --accent-blue: #2196F3;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-red);
+    border-radius: 3px;
+  }
+
+  /* Grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--accent-red);
+    color: white;
+  }
 }
 
-html { scroll-behavior: smooth; }
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #E53935 0%, #2196F3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
-body {
-  background: var(--color-navy-950);
-  color: #e8eaf0;
+  .gradient-border {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #E53935, #2196F3);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  .glass {
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-navbar {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  .neon-red {
+    box-shadow: 0 0 20px rgba(229, 57, 53, 0.4), 0 0 60px rgba(229, 57, 53, 0.15);
+  }
+
+  .neon-blue {
+    box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), 0 0 60px rgba(33, 150, 243, 0.15);
+  }
+
+  .text-muted {
+    color: var(--text-secondary);
+  }
+
+  /* Animated gradient bg for hero */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero-gradient {
+    background: radial-gradient(ellipse at 20% 50%, rgba(229, 57, 53, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(33, 150, 243, 0.10) 0%, transparent 60%),
+                #0A0A0A;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @keyframes count-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+
+  .scanline {
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
 }

@@ -1,132 +1,199 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const navLinks = [
+const links = [
+  { label: "Guide", href: "#guide" },
   { label: "Produits", href: "#produits" },
-  { label: "La Pince", href: "#newsletter" },
-  { label: "Coulisses", href: "#coulisses" },
-  { label: "Guide", href: "/guide", highlight: true },
+  { label: "L'équipe", href: "#equipe" },
+  { label: "Dashboard", href: "#dashboard" },
+  { label: "À propos", href: "#humain" },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Fermer le menu au scroll
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 10);
-      if (open) setOpen(false);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
-
-  // Fermer le menu à la navigation (liens ancre)
-  function handleLinkClick() {
-    setOpen(false);
-  }
+  }, []);
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 border-b ${
-        scrolled || open
-          ? "bg-navy-950/95 backdrop-blur-md border-navy-700/60"
-          : "bg-navy-950/80 backdrop-blur-md border-navy-700/50"
+    <motion.nav
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500 ${
+        scrolled ? "glass-navbar" : ""
       }`}
-      style={{ top: "var(--announcement-bar-height, 0px)" }}
     >
-      <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="text-xl font-bold hover:opacity-80 transition">
-          🦞 Jean-Claw
+        <a
+          href="#"
+          className="flex items-center gap-2 group"
+          style={{ textDecoration: "none" }}
+        >
+          <span
+            className="text-2xl"
+            style={{
+              filter: "drop-shadow(0 0 8px rgba(229,57,53,0.6))",
+              display: "inline-block",
+              transition: "transform 0.3s",
+            }}
+          >
+            🦞
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-space), sans-serif",
+              fontWeight: 700,
+              fontSize: "1.1rem",
+              color: "white",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Jean-Claw
+          </span>
         </a>
 
         {/* Desktop links */}
-        <div className="hidden sm:flex gap-6 text-sm text-navy-300">
-          {navLinks.map((l) => (
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((link) => (
             <a
-              key={l.label}
-              href={l.href}
-              className={`hover:text-gold-400 transition ${
-                l.highlight ? "text-gold-400/80 hover:text-gold-400" : ""
-              }`}
+              key={link.href}
+              href={link.href}
+              style={{
+                color: "#A0A0A0",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                textDecoration: "none",
+                transition: "color 0.2s",
+                letterSpacing: "0.01em",
+              }}
+              onMouseEnter={(e) =>
+                ((e.target as HTMLElement).style.color = "white")
+              }
+              onMouseLeave={(e) =>
+                ((e.target as HTMLElement).style.color = "#A0A0A0")
+              }
             >
-              {l.label}
+              {link.label}
             </a>
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <a
-          href="#produits"
-          className="hidden sm:block bg-gold-500 text-navy-950 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gold-400 transition"
-        >
-          Voir les produits
-        </a>
-
-        {/* Mobile: CTA compact + hamburger */}
-        <div className="flex sm:hidden items-center gap-3">
-          <a
-            href="https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gold-500 text-navy-950 px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-gold-400 transition"
+        {/* CTA */}
+        <div className="hidden md:flex items-center gap-3">
+          <motion.a
+            href="#guide"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              background: "#E53935",
+              color: "white",
+              padding: "0.5rem 1.25rem",
+              borderRadius: "8px",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              textDecoration: "none",
+              display: "inline-block",
+              transition: "box-shadow 0.2s",
+            }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLElement).style.boxShadow =
+                "0 0 24px rgba(229,57,53,0.4)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLElement).style.boxShadow = "none")
+            }
           >
-            Guide 39€
-          </a>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            className="p-2 rounded-lg text-navy-300 hover:text-white hover:bg-navy-800 transition"
-          >
-            {open ? (
-              // X icon
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M18 6L6 18M6 6l12 12" />
-              </svg>
-            ) : (
-              // Hamburger icon
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+            Acheter le guide
+          </motion.a>
         </div>
+
+        {/* Mobile menu toggle */}
+        <button
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{ background: "none", border: "none", cursor: "none" }}
+        >
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 2,
+              background: "white",
+              transition: "transform 0.3s",
+              transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 2,
+              background: "white",
+              transition: "opacity 0.3s",
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: 22,
+              height: 2,
+              background: "white",
+              transition: "transform 0.3s",
+              transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none",
+            }}
+          />
+        </button>
       </div>
 
-      {/* Mobile dropdown menu */}
-      {open && (
-        <div className="sm:hidden border-t border-navy-800/80 bg-navy-950/98 backdrop-blur-md">
-          <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-1">
-            {navLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                onClick={handleLinkClick}
-                className={`px-3 py-3 rounded-xl text-sm font-medium transition hover:bg-navy-800/70 ${
-                  l.highlight
-                    ? "text-gold-400 hover:text-gold-300"
-                    : "text-navy-200 hover:text-white"
-                }`}
-              >
-                {l.label}
-              </a>
-            ))}
-            {/* Mobile CTA full width */}
+      {/* Mobile menu */}
+      {menuOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          className="glass-navbar md:hidden px-6 py-4 flex flex-col gap-4"
+        >
+          {links.map((link) => (
             <a
-              href="https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={handleLinkClick}
-              className="mt-2 bg-gold-500 text-navy-950 px-4 py-3 rounded-xl text-sm font-bold text-center hover:bg-gold-400 transition shadow-lg shadow-gold-500/20"
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                color: "#A0A0A0",
+                fontSize: "1rem",
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
             >
-              📘 Guide IA pour Solopreneurs — 39€
+              {link.label}
             </a>
-          </div>
-        </div>
+          ))}
+          <a
+            href="#guide"
+            style={{
+              background: "#E53935",
+              color: "white",
+              padding: "0.75rem 1.25rem",
+              borderRadius: "8px",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              textDecoration: "none",
+              textAlign: "center",
+            }}
+          >
+            Acheter le guide
+          </a>
+        </motion.div>
       )}
-    </nav>
+    </motion.nav>
   );
 }

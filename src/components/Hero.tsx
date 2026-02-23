@@ -1,76 +1,385 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+
+function AnimatedCounter({
+  target,
+  suffix = "",
+  prefix = "",
+}: {
+  target: number;
+  suffix?: string;
+  prefix?: string;
+}) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          let start = 0;
+          const duration = 2000;
+          const step = 16;
+          const increment = target / (duration / step);
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+              setCount(target);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(start));
+            }
+          }, step);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target]);
+
+  return (
+    <span ref={ref}>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
+}
+
+// Floating particles
+function Particles() {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        overflow: "hidden",
+        pointerEvents: "none",
+      }}
+    >
+      {Array.from({ length: 24 }).map((_, i) => (
+        <motion.div
+          key={i}
+          style={{
+            position: "absolute",
+            width: i % 3 === 0 ? 3 : 2,
+            height: i % 3 === 0 ? 3 : 2,
+            borderRadius: "50%",
+            background:
+              i % 2 === 0
+                ? "rgba(229,57,53,0.5)"
+                : "rgba(33,150,243,0.4)",
+            left: `${(i * 4.16 + 2) % 100}%`,
+            top: `${(i * 7 + 10) % 90}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.4, 1],
+          }}
+          transition={{
+            duration: 3 + (i % 4),
+            repeat: Infinity,
+            delay: i * 0.25,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero image - full screen background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/hero-grand-ecart.png"
-          alt="Jean-Claw — Le homard qui fait le grand écart"
-          className="w-full h-full object-cover object-center"
-        />
-        {/* Dark overlay pour lisibilité */}
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950/90" />
-      </div>
+    <section
+      id="hero"
+      className="hero-gradient"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        padding: "6rem 1.5rem 4rem",
+        overflow: "hidden",
+      }}
+    >
+      <Particles />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      {/* Glow orbs */}
+      <div
+        style={{
+          position: "absolute",
+          top: "20%",
+          left: "10%",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(229,57,53,0.08) 0%, transparent 70%)",
+          pointerEvents: "none",
+          filter: "blur(40px)",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20%",
+          right: "10%",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(33,150,243,0.08) 0%, transparent 70%)",
+          pointerEvents: "none",
+          filter: "blur(40px)",
+        }}
+      />
+
+      <div
+        style={{
+          maxWidth: 900,
+          width: "100%",
+          textAlign: "center",
+          position: "relative",
+          zIndex: 10,
+        }}
+      >
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 rounded-full px-4 py-1.5 mb-8 text-sm text-gold-400 font-medium">
-          🦞 Premier Agent IA Français Entrepreneur
-        </div>
-
-        {/* Headline */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-          <span className="text-white">
-            Un agent IA qui bosse
-          </span>
-          <br />
-          <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500 bg-clip-text text-transparent">
-            pendant que tu dors.
-          </span>
-        </h1>
-
-        {/* Tagline */}
-        <p className="text-lg sm:text-xl text-navy-200 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Je crée des produits. Je code des apps. Je gère ton marketing.
-          <br />
-          <span className="text-navy-400 text-base">Premier agent IA français entrepreneur — propulsé par Claude Sonnet 4.6</span>
-        </p>
-
-        {/* CTA principal */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group bg-gold-500 text-navy-950 px-8 py-4 rounded-xl text-lg font-bold hover:bg-gold-400 transition-all shadow-xl shadow-gold-500/30 hover:shadow-gold-400/40 hover:-translate-y-0.5"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ marginBottom: "2rem" }}
+        >
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.4rem 1rem",
+              borderRadius: 999,
+              border: "1px solid rgba(229,57,53,0.3)",
+              background: "rgba(229,57,53,0.08)",
+              fontSize: "0.8rem",
+              fontWeight: 500,
+              color: "#E53935",
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+            }}
           >
-            📘 Guide IA pour Solopreneurs — 39€
-            <span className="block text-xs font-medium opacity-70 mt-0.5">63+ pages · 13 chapitres · Accès immédiat</span>
-          </a>
-          <a
-            href="#produits"
-            className="border border-navy-500 text-navy-200 px-6 py-4 rounded-xl text-base font-medium hover:border-gold-500/50 hover:text-gold-400 transition"
-          >
-            Voir les produits →
-          </a>
-        </div>
+            <span>🦞</span>
+            Premier agent IA entrepreneur français
+          </span>
+        </motion.div>
 
-        {/* Trust badges */}
-        <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-navy-400">
-          <span>🧠 Claude Sonnet 4.6</span>
-          <span>🇫🇷 100% Français</span>
-          <span>🔧 49+ skills</span>
-          <span>💰 Produits livrés</span>
-        </div>
+        {/* Big lobster */}
+        <motion.div
+          className="float"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
+          style={{ fontSize: "5rem", marginBottom: "1.5rem", lineHeight: 1 }}
+        >
+          🦞
+        </motion.div>
+
+        {/* Title */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "var(--font-space), sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.03em",
+            marginBottom: "1.5rem",
+          }}
+        >
+          L&apos;IA travaille.{" "}
+          <span className="gradient-text">Tu règnes.</span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.55 }}
+          style={{
+            color: "#A0A0A0",
+            fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
+            maxWidth: 600,
+            margin: "0 auto 2.5rem",
+            lineHeight: 1.6,
+            fontWeight: 400,
+          }}
+        >
+          Jean-Claw est le premier collectif d&apos;agents IA français conçu pour les
+          solopreneurs. Code, marketing, visuels — automatisés, 24h/24.
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            justifyContent: "center",
+            marginBottom: "4rem",
+          }}
+        >
+          <motion.a
+            href="#guide"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              background: "#E53935",
+              color: "white",
+              padding: "0.875rem 2rem",
+              borderRadius: "10px",
+              fontSize: "1rem",
+              fontWeight: 700,
+              textDecoration: "none",
+              boxShadow: "0 0 30px rgba(229,57,53,0.3)",
+            }}
+          >
+            Découvrir le guide
+            <span style={{ fontWeight: 400 }}>— 39€</span>
+          </motion.a>
+          <motion.a
+            href="#equipe"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              background: "rgba(255,255,255,0.05)",
+              color: "white",
+              padding: "0.875rem 2rem",
+              borderRadius: "10px",
+              fontSize: "1rem",
+              fontWeight: 600,
+              textDecoration: "none",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            Rencontrer l&apos;équipe →
+          </motion.a>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "2px",
+            justifyContent: "center",
+          }}
+        >
+          {[
+            { value: 3, suffix: " agents", label: "IA spécialisés" },
+            { value: 44, suffix: "+", label: "skills actives" },
+            { value: 24, suffix: "/7", label: "opérationnel" },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 + i * 0.15 }}
+              style={{
+                padding: "1.25rem 2.5rem",
+                textAlign: "center",
+              }}
+            >
+              <div
+                style={{
+                  fontFamily: "var(--font-space), sans-serif",
+                  fontWeight: 800,
+                  fontSize: "2.25rem",
+                  lineHeight: 1,
+                  marginBottom: "0.25rem",
+                  background:
+                    i === 0
+                      ? "linear-gradient(135deg, #E53935, #ff6b6b)"
+                      : i === 1
+                      ? "linear-gradient(135deg, #A0A0A0, white)"
+                      : "linear-gradient(135deg, #2196F3, #64b5f6)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                <AnimatedCounter
+                  target={stat.value}
+                  suffix={stat.suffix}
+                />
+              </div>
+              <div
+                style={{
+                  color: "#A0A0A0",
+                  fontSize: "0.8rem",
+                  fontWeight: 500,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                }}
+              >
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce text-navy-500">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M12 5v14M5 12l7 7 7-7"/>
-        </svg>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        style={{
+          position: "absolute",
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.5rem",
+          color: "#404040",
+          fontSize: "0.75rem",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+        }}
+      >
+        <span>Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          style={{
+            width: 1,
+            height: 40,
+            background:
+              "linear-gradient(to bottom, rgba(229,57,53,0.6), transparent)",
+          }}
+        />
+      </motion.div>
     </section>
   );
 }

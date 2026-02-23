@@ -1,19 +1,29 @@
-import Hero from "@/components/Hero";
-import Products from "@/components/Products";
-import LaPince from "@/components/LaPince";
-import Coulisses from "@/components/Coulisses";
-import Footer from "@/components/Footer";
+"use client";
+
+import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import GuideSection from "@/components/GuideSection";
+import TeamSection from "@/components/TeamSection";
+import ProduitsSection from "@/components/ProduitsSection";
+import DashboardSection from "@/components/DashboardSection";
+import HumainSection from "@/components/HumainSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
+      <CustomCursor />
       <Navbar />
-      <Hero />
-      <Products />
-      <LaPince />
-      <Coulisses />
+      <main>
+        <Hero />
+        <GuideSection />
+        <TeamSection />
+        <ProduitsSection />
+        <DashboardSection />
+        <HumainSection />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
