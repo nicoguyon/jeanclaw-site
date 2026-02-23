@@ -34,11 +34,12 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+      className={`fixed w-full z-50 transition-all duration-300 border-b ${
         scrolled || open
           ? "bg-navy-950/95 backdrop-blur-md border-navy-700/60"
           : "bg-navy-950/80 backdrop-blur-md border-navy-700/50"
       }`}
+      style={{ top: "var(--announcement-bar-height, 0px)" }}
     >
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}

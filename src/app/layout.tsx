@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import "./globals.css";
 
 const BASE_URL = "https://jeanclaw-site.vercel.app";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <body className="antialiased">
+        <AnnouncementBar />
         {children}
         <Analytics />
       </body>
