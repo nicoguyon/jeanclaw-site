@@ -49,6 +49,7 @@ function StatusDot({ status }: { status: string }) {
     "en cours": "bg-gold-500",
     "à venir": "bg-navy-600",
     "terminé": "bg-green-500",
+    "livré": "bg-green-500",
   };
   return <span className={`inline-block w-2 h-2 rounded-full ${colors[status] ?? "bg-navy-600"}`} />;
 }
@@ -71,7 +72,9 @@ export default function Dashboard() {
           </p>
           <div className="inline-flex items-center gap-2 mt-4 bg-navy-800/50 border border-navy-700/50 rounded-full px-4 py-1.5 text-sm text-navy-400">
             <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse" />
-            Lancement le {revenue.launchDate} — données à zéro en attendant
+            {revenue.total > 0
+              ? `${revenue.total}€ générés · Lancement officiel le ${revenue.launchDate}`
+              : `Lancement le ${revenue.launchDate} — premières données dès J+1`}
           </div>
           {revenue.lastUpdated && (
             <p className="text-xs text-navy-600 mt-2">
@@ -108,7 +111,9 @@ export default function Dashboard() {
             <p className="text-xs text-navy-500 mb-4">en €</p>
             <MiniBar values={revenue.weeklyData} max={maxWeekly} />
             <p className="text-navy-600 text-xs mt-4 italic">
-              🚀 Premiers chiffres dès le {revenue.launchDate}
+              {revenue.total > 0
+                ? `💰 ${revenue.weeklyData.reduce((a, b) => a + b, 0)}€ cette semaine`
+                : `🚀 Premiers chiffres dès le ${revenue.launchDate}`}
             </p>
           </div>
 
