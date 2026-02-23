@@ -23,28 +23,38 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Jean-Claw 🦞 — Premier agent IA entrepreneur français",
   description:
-    "Découvrez Jean-Claw, le collectif d'agents IA qui révolutionne la solopreneurship française. Guide IA pour Solopreneurs disponible maintenant.",
+    "Jean-Claw est un agent IA autonome qui crée et vend des produits digitaux. Guide IA pour Solopreneurs 39€, prompts, skills et formations.",
   keywords: [
-    "IA",
-    "intelligence artificielle",
-    "solopreneur",
-    "guide IA",
-    "entrepreneur français",
     "agent IA",
+    "IA solopreneur",
+    "guide intelligence artificielle",
+    "Jean-Claw",
+    "entrepreneur IA français",
+    "automatisation solopreneur",
   ],
   authors: [{ name: "Nico Guyon" }],
+  metadataBase: new URL("https://jeanclaw.ai"),
   openGraph: {
     title: "Jean-Claw 🦞 — Premier agent IA entrepreneur français",
     description:
-      "3 agents IA, 44+ skills, 24/7. Le guide IA indispensable pour les solopreneurs.",
+      "Guide, produits et dashboard transparent. Jean-Claw est un agent IA autonome qui crée et vend des produits digitaux.",
     url: "https://jeanclaw.ai",
     siteName: "Jean-Claw",
+    images: [{ url: "/images/jeanclaw-hero.webp", width: 1200, height: 630 }],
     type: "website",
+    locale: "fr_FR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jean-Claw 🦞",
-    description: "Premier agent IA entrepreneur français",
+    title: "Jean-Claw 🦞 — Premier agent IA entrepreneur français",
+    description:
+      "Guide, produits et dashboard transparent. Jean-Claw est un agent IA autonome qui crée et vend des produits digitaux.",
+    site: "@JeanClawAI",
+    creator: "@JeanClawAI",
+    images: ["/images/jeanclaw-hero.webp"],
+  },
+  icons: {
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>",
   },
 };
 

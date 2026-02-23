@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 function AnimatedCounter({
   target,
@@ -51,7 +52,6 @@ function AnimatedCounter({
   );
 }
 
-// Floating particles
 function Particles() {
   return (
     <div
@@ -62,7 +62,7 @@ function Particles() {
         pointerEvents: "none",
       }}
     >
-      {Array.from({ length: 24 }).map((_, i) => (
+      {Array.from({ length: 28 }).map((_, i) => (
         <motion.div
           key={i}
           style={{
@@ -72,20 +72,20 @@ function Particles() {
             borderRadius: "50%",
             background:
               i % 2 === 0
-                ? "rgba(229,57,53,0.5)"
-                : "rgba(33,150,243,0.4)",
-            left: `${(i * 4.16 + 2) % 100}%`,
-            top: `${(i * 7 + 10) % 90}%`,
+                ? "rgba(229,57,53,0.55)"
+                : "rgba(33,150,243,0.45)",
+            left: `${(i * 3.7 + 1.5) % 100}%`,
+            top: `${(i * 6.3 + 5) % 92}%`,
           }}
           animate={{
-            y: [0, -30, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.4, 1],
+            y: [0, -28, 0],
+            opacity: [0.2, 0.9, 0.2],
+            scale: [1, 1.5, 1],
           }}
           transition={{
-            duration: 3 + (i % 4),
+            duration: 3 + (i % 5),
             repeat: Infinity,
-            delay: i * 0.25,
+            delay: i * 0.22,
             ease: "easeInOut",
           }}
         />
@@ -98,7 +98,6 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="hero-gradient"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -106,137 +105,179 @@ export default function Hero() {
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        padding: "6rem 1.5rem 4rem",
+        padding: "6rem 1.5rem 5rem",
         overflow: "hidden",
+        background: "#0A0A0A",
       }}
     >
+      {/* Hero background image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <Image
+          src="/images/jeanclaw-hero.webp"
+          alt="Jean-Claw hero"
+          fill
+          priority
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+            opacity: 0.22,
+          }}
+        />
+        {/* Gradient overlay on top of image */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, #0A0A0A 0%, rgba(10,10,10,0.5) 40%, rgba(10,10,10,0.6) 70%, #0A0A0A 100%)",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse at 20% 50%, rgba(229,57,53,0.12) 0%, transparent 55%), radial-gradient(ellipse at 80% 50%, rgba(33,150,243,0.10) 0%, transparent 55%)",
+          }}
+        />
+      </div>
+
       <Particles />
 
       {/* Glow orbs */}
       <div
         style={{
           position: "absolute",
-          top: "20%",
-          left: "10%",
-          width: 400,
-          height: 400,
+          top: "15%",
+          left: "8%",
+          width: 500,
+          height: 500,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(229,57,53,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(229,57,53,0.07) 0%, transparent 70%)",
+          filter: "blur(50px)",
           pointerEvents: "none",
-          filter: "blur(40px)",
+          zIndex: 1,
         }}
       />
       <div
         style={{
           position: "absolute",
-          bottom: "20%",
-          right: "10%",
-          width: 400,
-          height: 400,
+          bottom: "15%",
+          right: "8%",
+          width: 500,
+          height: 500,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(33,150,243,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(33,150,243,0.07) 0%, transparent 70%)",
+          filter: "blur(50px)",
           pointerEvents: "none",
-          filter: "blur(40px)",
+          zIndex: 1,
         }}
       />
 
       <div
         style={{
-          maxWidth: 900,
+          maxWidth: 860,
           width: "100%",
           textAlign: "center",
           position: "relative",
           zIndex: 10,
         }}
       >
-        {/* Badge */}
+        {/* Live badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           style={{ marginBottom: "2rem" }}
         >
           <span
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.4rem 1rem",
+              gap: "0.6rem",
+              padding: "0.45rem 1.1rem",
               borderRadius: 999,
-              border: "1px solid rgba(229,57,53,0.3)",
+              border: "1px solid rgba(229,57,53,0.35)",
               background: "rgba(229,57,53,0.08)",
-              fontSize: "0.8rem",
-              fontWeight: 500,
+              fontSize: "0.82rem",
+              fontWeight: 600,
               color: "#E53935",
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
+              letterSpacing: "0.04em",
             }}
           >
-            <span>🦞</span>
-            Premier agent IA entrepreneur français
+            {/* Pulse dot */}
+            <span style={{ position: "relative", display: "inline-flex" }}>
+              <span
+                style={{
+                  display: "block",
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#22c55e",
+                  boxShadow: "0 0 6px rgba(34,197,94,0.7)",
+                }}
+              />
+            </span>
+            🦞 Online · 3 agents · 44 skills · 24/7
           </span>
         </motion.div>
 
-        {/* Big lobster */}
-        <motion.div
-          className="float"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, type: "spring", bounce: 0.4 }}
-          style={{ fontSize: "5rem", marginBottom: "1.5rem", lineHeight: 1 }}
-        >
-          🦞
-        </motion.div>
-
-        {/* Title */}
+        {/* Main title — Dario's copy */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.85, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           style={{
             fontFamily: "var(--font-space), sans-serif",
             fontWeight: 800,
-            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
-            lineHeight: 1.05,
-            letterSpacing: "-0.03em",
-            marginBottom: "1.5rem",
+            fontSize: "clamp(2.4rem, 6.5vw, 5.25rem)",
+            lineHeight: 1.06,
+            letterSpacing: "-0.035em",
+            marginBottom: "1.75rem",
           }}
         >
-          L&apos;IA travaille.{" "}
-          <span className="gradient-text">Tu règnes.</span>
+          L&apos;IA qui bosse{" "}
+          <span className="gradient-text">pendant que tu lis</span>{" "}
+          ces lignes.
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle — Dario's copy */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
           style={{
             color: "#A0A0A0",
-            fontSize: "clamp(1rem, 2.5vw, 1.25rem)",
-            maxWidth: 600,
-            margin: "0 auto 2.5rem",
-            lineHeight: 1.6,
+            fontSize: "clamp(1rem, 2.2vw, 1.2rem)",
+            maxWidth: 620,
+            margin: "0 auto 2.75rem",
+            lineHeight: 1.7,
             fontWeight: 400,
           }}
         >
-          Jean-Claw est le premier collectif d&apos;agents IA français conçu pour les
-          solopreneurs. Code, marketing, visuels — automatisés, 24h/24.
+          Jean-Claw est un agent IA autonome. Il code, il rédige, il crée — et
+          il vend ce qu&apos;il produit. Premier agent entrepreneur français.
+          Résultat : des vrais produits, des vrais euros, zéro bullshit.
         </motion.p>
 
-        {/* CTA */}
+        {/* CTA row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
           style={{
             display: "flex",
             flexWrap: "wrap",
             gap: "1rem",
             justifyContent: "center",
-            marginBottom: "4rem",
+            marginBottom: "4.5rem",
           }}
         >
           <motion.a
@@ -249,19 +290,27 @@ export default function Hero() {
               gap: "0.5rem",
               background: "#E53935",
               color: "white",
-              padding: "0.875rem 2rem",
+              padding: "0.9rem 2.1rem",
               borderRadius: "10px",
               fontSize: "1rem",
               fontWeight: 700,
               textDecoration: "none",
-              boxShadow: "0 0 30px rgba(229,57,53,0.3)",
+              boxShadow: "0 0 32px rgba(229,57,53,0.32)",
             }}
           >
             Découvrir le guide
-            <span style={{ fontWeight: 400 }}>— 39€</span>
+            <span
+              style={{
+                opacity: 0.8,
+                fontWeight: 500,
+                fontSize: "0.95rem",
+              }}
+            >
+              — 39€
+            </span>
           </motion.a>
           <motion.a
-            href="#equipe"
+            href="#dashboard"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             style={{
@@ -270,78 +319,96 @@ export default function Hero() {
               gap: "0.5rem",
               background: "rgba(255,255,255,0.05)",
               color: "white",
-              padding: "0.875rem 2rem",
+              padding: "0.9rem 2.1rem",
               borderRadius: "10px",
               fontSize: "1rem",
               fontWeight: 600,
               textDecoration: "none",
               border: "1px solid rgba(255,255,255,0.1)",
+              backdropFilter: "blur(8px)",
             }}
           >
-            Rencontrer l&apos;équipe →
+            Voir le dashboard →
           </motion.a>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats strip */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
+          transition={{ duration: 0.8, delay: 0.85 }}
           style={{
-            display: "flex",
+            display: "inline-flex",
             flexWrap: "wrap",
-            gap: "2px",
+            gap: 0,
             justifyContent: "center",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            borderRadius: "16px",
+            overflow: "hidden",
+            backdropFilter: "blur(12px)",
           }}
         >
           {[
-            { value: 3, suffix: " agents", label: "IA spécialisés" },
-            { value: 44, suffix: "+", label: "skills actives" },
-            { value: 24, suffix: "/7", label: "opérationnel" },
-          ].map((stat, i) => (
+            {
+              value: 3,
+              suffix: "",
+              unit: "agents IA",
+              color: "#E53935",
+              accent: "linear-gradient(135deg,#E53935,#ff6b6b)",
+            },
+            {
+              value: 44,
+              suffix: "+",
+              unit: "skills actives",
+              color: "#A0A0A0",
+              accent: "linear-gradient(135deg,#888,#fff)",
+            },
+            {
+              value: 24,
+              suffix: "/7",
+              unit: "opérationnel",
+              color: "#2196F3",
+              accent: "linear-gradient(135deg,#2196F3,#64b5f6)",
+            },
+          ].map((s, i) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              key={s.unit}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 + i * 0.15 }}
+              transition={{ delay: 1 + i * 0.12 }}
               style={{
-                padding: "1.25rem 2.5rem",
+                padding: "1.4rem 2.8rem",
                 textAlign: "center",
+                borderRight:
+                  i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
               }}
             >
               <div
                 style={{
                   fontFamily: "var(--font-space), sans-serif",
                   fontWeight: 800,
-                  fontSize: "2.25rem",
+                  fontSize: "2.4rem",
                   lineHeight: 1,
-                  marginBottom: "0.25rem",
-                  background:
-                    i === 0
-                      ? "linear-gradient(135deg, #E53935, #ff6b6b)"
-                      : i === 1
-                      ? "linear-gradient(135deg, #A0A0A0, white)"
-                      : "linear-gradient(135deg, #2196F3, #64b5f6)",
+                  background: s.accent,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
+                  marginBottom: "0.3rem",
                 }}
               >
-                <AnimatedCounter
-                  target={stat.value}
-                  suffix={stat.suffix}
-                />
+                <AnimatedCounter target={s.value} suffix={s.suffix} />
               </div>
               <div
                 style={{
-                  color: "#A0A0A0",
-                  fontSize: "0.8rem",
-                  fontWeight: 500,
+                  color: "#505050",
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
                   textTransform: "uppercase",
-                  letterSpacing: "0.08em",
+                  letterSpacing: "0.1em",
                 }}
               >
-                {stat.label}
+                {s.unit}
               </div>
             </motion.div>
           ))}
@@ -352,31 +419,31 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 1.6 }}
         style={{
           position: "absolute",
-          bottom: "2rem",
+          bottom: "2.5rem",
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "0.5rem",
-          color: "#404040",
-          fontSize: "0.75rem",
-          letterSpacing: "0.1em",
+          gap: "0.4rem",
+          color: "#303030",
+          fontSize: "0.7rem",
+          letterSpacing: "0.12em",
           textTransform: "uppercase",
+          zIndex: 10,
         }}
       >
         <span>Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity }}
           style={{
             width: 1,
-            height: 40,
-            background:
-              "linear-gradient(to bottom, rgba(229,57,53,0.6), transparent)",
+            height: 36,
+            background: "linear-gradient(to bottom, rgba(229,57,53,0.5), transparent)",
           }}
         />
       </motion.div>
