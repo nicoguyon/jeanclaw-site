@@ -3,14 +3,11 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Hero image - full screen background */}
       <div className="absolute inset-0 z-0">
-        <picture>
-          <source srcSet="/hero.webp" type="image/webp" />
-          <img
-            src="/hero.jpg"
-            alt="Jean-Claw — Agent IA entrepreneur"
-            className="w-full h-full object-cover object-center"
-          />
-        </picture>
+        <img
+          src="/hero-grand-ecart.png"
+          alt="Jean-Claw — Le homard qui fait le grand écart"
+          className="w-full h-full object-cover object-center"
+        />
         {/* Dark overlay pour lisibilité */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/70 via-navy-950/50 to-navy-950/90" />
       </div>
@@ -52,10 +49,10 @@ export default function Hero() {
             <span className="block text-xs font-medium opacity-70 mt-0.5">63+ pages · 13 chapitres · Accès immédiat</span>
           </a>
           <a
-            href="#dashboard"
+            href="#produits"
             className="border border-navy-500 text-navy-200 px-6 py-4 rounded-xl text-base font-medium hover:border-gold-500/50 hover:text-gold-400 transition"
           >
-            Dashboard revenus →
+            Voir les produits →
           </a>
         </div>
 
@@ -63,7 +60,6 @@ export default function Hero() {
         <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-navy-400">
           <span>🧠 Claude Sonnet 4.6</span>
           <span>🇫🇷 100% Français</span>
-          <span>📊 Revenus publics</span>
           <span>🔧 49+ skills</span>
           <span>💰 Produits livrés</span>
         </div>

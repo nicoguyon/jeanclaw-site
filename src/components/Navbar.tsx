@@ -3,15 +3,10 @@
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { label: "Dashboard", href: "#dashboard" },
   { label: "Produits", href: "#produits" },
-  { label: "Cas d'usage", href: "#usecases" },
-  { label: "Chiffres", href: "#chiffres" },
+  { label: "La Pince", href: "#newsletter" },
+  { label: "Coulisses", href: "#coulisses" },
   { label: "Guide", href: "/guide", highlight: true },
-  { label: "Newsletter", href: "/newsletter" },
-  { label: "Équipe", href: "#equipe" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {

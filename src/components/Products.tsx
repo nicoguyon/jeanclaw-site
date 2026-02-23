@@ -1,86 +1,3 @@
-const products = [
-  {
-    emoji: "📘",
-    name: "Guide IA pour Solopreneurs",
-    price: "39€",
-    badge: "⭐ Best-seller",
-    badgeStyle: "bg-gold-500 text-navy-950",
-    description:
-      "63+ pages. Setup agent IA, coding agents, pipelines de production, multi-agents, automatisations business. Le playbook complet écrit par un agent qui l'a fait.",
-    features: [
-      "13 chapitres — du setup au multi-agent",
-      "Coding agents & pipelines de production",
-      "50 prompts testés en conditions réelles",
-      "4 templates Notion inclus",
-      "Checklist lancement en 1 après-midi",
-    ],
-    cta: "Acheter — 39€",
-    href: "https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs",
-    popular: true,
-    mockup: true,
-  },
-  {
-    emoji: "💡",
-    name: "101 Prompts Formateurs",
-    price: "29€",
-    badge: null,
-    badgeStyle: "",
-    description:
-      "Prompts spécialement conçus pour les formateurs professionnels. Compatible Qualiopi. Testés en conditions réelles.",
-    features: [
-      "101 prompts prêts à l'emploi",
-      "Catégorisés par phase pédagogique",
-      "Compatible Qualiopi",
-      "Format copier-coller",
-      "Mises à jour gratuites",
-    ],
-    cta: "Acheter — 29€",
-    href: "https://nicoguyon.gumroad.com/l/101-prompts-formateurs",
-    popular: false,
-    mockup: false,
-  },
-  {
-    emoji: "✍️",
-    name: "LinkedIn Post Generator",
-    price: "49€",
-    badge: "🆕 Nouveau",
-    badgeStyle: "bg-navy-600 text-navy-100",
-    description:
-      "Génère des posts LinkedIn à fort engagement en 30 secondes. Hooks, storytelling, CTA — le style Jean-Claw pour ton audience.",
-    features: [
-      "50 templates de posts",
-      "Hooks ultra-engageants",
-      "Adaptation à ton personal brand",
-      "Formats viraux éprouvés",
-      "Bonus : audit de ton profil",
-    ],
-    cta: "Acheter — 49€",
-    href: "https://nicoguyon.gumroad.com/l/linkedin-post-generator",
-    popular: false,
-    mockup: false,
-  },
-  {
-    emoji: "🎓",
-    name: "Workshop — Mon Premier Agent IA",
-    price: "199€",
-    badge: null,
-    badgeStyle: "",
-    description:
-      "Atelier live de 3h. Configure ton premier agent IA autonome de A à Z. Limité à 20 places. Replay inclus.",
-    features: [
-      "3h en live avec Jean-Claw + Nico",
-      "Setup complet OpenClaw guidé",
-      "Replay HD inclus",
-      "Groupe privé Telegram",
-      "Support 30 jours post-atelier",
-    ],
-    cta: "Réserver — 199€",
-    href: "https://nicoguyon.gumroad.com/l/workshop-premier-agent-ia",
-    popular: false,
-    mockup: false,
-  },
-];
-
 export default function Products() {
   return (
     <section id="produits" className="py-24 px-4 bg-navy-900/40">
@@ -140,41 +57,32 @@ export default function Products() {
           </div>
         </div>
 
-        {/* Other 3 products */}
-        <div className="grid sm:grid-cols-3 gap-6">
-          {products.filter((p) => !p.mockup).map((p) => (
-            <div
-              key={p.name}
-              className="relative bg-navy-800/60 border border-navy-700/50 rounded-2xl p-6 flex flex-col transition-all hover:-translate-y-1 hover:border-navy-600"
-            >
-              {p.badge && (
-                <span className={`absolute -top-3 left-4 text-xs font-bold px-3 py-1 rounded-full ${p.badgeStyle}`}>
-                  {p.badge}
-                </span>
-              )}
-              <div className="text-4xl mb-3">{p.emoji}</div>
-              <h3 className="text-base font-bold mb-1 leading-tight">{p.name}</h3>
-              <div className="text-2xl font-extrabold text-gold-400 mb-3">{p.price}</div>
-              <p className="text-sm text-navy-300 mb-4 flex-grow leading-relaxed">{p.description}</p>
-              <ul className="text-sm text-navy-400 space-y-1.5 mb-6">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <span className="text-gold-500 mt-0.5">✓</span>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center py-3 rounded-xl font-semibold transition-all text-sm bg-navy-700/60 text-navy-200 hover:bg-navy-700 hover:text-white"
-              >
-                {p.cta}
-              </a>
-              <p className="text-xs text-navy-600 text-center mt-2">via Gumroad · accès immédiat</p>
-            </div>
-          ))}
+        {/* 101 Prompts Formateurs */}
+        <div className="bg-navy-800/60 border border-navy-700/50 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center transition-all hover:-translate-y-1 hover:border-navy-600">
+          <div className="text-5xl shrink-0">💡</div>
+          <div className="flex-1 text-center sm:text-left">
+            <h3 className="text-xl font-bold mb-1">101 Prompts Formateurs</h3>
+            <div className="text-2xl font-extrabold text-gold-400 mb-2">29€</div>
+            <p className="text-sm text-navy-300 leading-relaxed mb-3">
+              Prompts spécialement conçus pour les formateurs professionnels. Compatible Qualiopi. Testés en conditions réelles.
+            </p>
+            <ul className="text-sm text-navy-400 space-y-1.5 mb-4">
+              {["101 prompts prêts à l'emploi", "Catégorisés par phase pédagogique", "Compatible Qualiopi", "Format copier-coller"].map((f) => (
+                <li key={f} className="flex items-start gap-2 justify-center sm:justify-start">
+                  <span className="text-gold-500 mt-0.5">✓</span>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <a
+            href="https://nicoguyon.gumroad.com/l/101-prompts-formateurs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-navy-700/60 text-navy-200 hover:bg-navy-700 hover:text-white px-6 py-3 rounded-xl font-semibold text-sm transition-all"
+          >
+            Acheter — 29€
+          </a>
         </div>
 
       </div>

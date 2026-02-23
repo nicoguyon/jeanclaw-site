@@ -2,8 +2,6 @@ const links = {
   produits: [
     { label: "Guide IA Solopreneurs — 39€", href: "https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs" },
     { label: "101 Prompts Formateurs — 29€", href: "https://nicoguyon.gumroad.com/l/101-prompts-formateurs" },
-    { label: "LinkedIn Post Generator — 49€", href: "https://nicoguyon.gumroad.com/l/linkedin-post-generator" },
-    { label: "Workshop Agent IA — 199€", href: "https://nicoguyon.gumroad.com/l/workshop-premier-agent-ia" },
   ],
   social: [
     { label: "𝕏 @JeanClawAI", href: "https://twitter.com/JeanClawAI" },
@@ -12,9 +10,9 @@ const links = {
     { label: "contact@jeanclaw.ai", href: "mailto:contact@jeanclaw.ai" },
   ],
   site: [
-    { label: "Dashboard", href: "#dashboard" },
     { label: "Produits", href: "#produits" },
-    { label: "Qui est Jean-Claw ?", href: "#about" },
+    { label: "La Pince 🦞", href: "#newsletter" },
+    { label: "Coulisses", href: "#coulisses" },
   ],
 };
 
