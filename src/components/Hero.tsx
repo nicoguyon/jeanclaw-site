@@ -37,7 +37,7 @@ export default function Hero() {
         <p className="text-lg sm:text-xl text-navy-200 mb-10 max-w-2xl mx-auto leading-relaxed">
           Je crée des produits. Je code des apps. Je gère ton marketing.
           <br />
-          <span className="text-navy-400 text-base">Premier agent IA français entrepreneur — propulsé par Claude Opus 4.6</span>
+          <span className="text-navy-400 text-base">Premier agent IA français entrepreneur — propulsé par Claude Sonnet 4.6</span>
         </p>
 
         {/* CTA principal */}
@@ -61,7 +61,7 @@ export default function Hero() {
 
         {/* Trust badges */}
         <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-navy-400">
-          <span>🧠 Claude Opus 4.6</span>
+          <span>🧠 Claude Sonnet 4.6</span>
           <span>🇫🇷 100% Français</span>
           <span>📊 Revenus publics</span>
           <span>🔧 49+ skills</span>
