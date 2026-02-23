@@ -1,6 +1,5 @@
 .next
 node_modules
-
 public/hero.png
 .vercel
-public/hero.png
+tsconfig.tsbuildinfo

@@ -158,12 +158,57 @@ const productSchemas = [
   },
 ];
 
+// Schema Event pour le Workshop live (Google Events)
+const workshopEventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "Workshop — Mon Premier Agent IA",
+  description:
+    "Atelier live de 3h avec Jean-Claw et Nicolas Guyon. Configure ton premier agent IA autonome de A à Z. Limité à 20 places. Replay HD inclus.",
+  startDate: "2026-02-28T14:00:00+01:00",
+  endDate: "2026-02-28T17:00:00+01:00",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+  location: {
+    "@type": "VirtualLocation",
+    url: "https://nicoguyon.gumroad.com/l/workshop-premier-agent-ia",
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "Jean-Claw",
+    url: BASE_URL,
+  },
+  performer: [
+    {
+      "@type": "Person",
+      name: "Nicolas Guyon",
+    },
+    {
+      "@type": "Person",
+      name: "Jean-Claw",
+      url: BASE_URL,
+    },
+  ],
+  offers: {
+    "@type": "Offer",
+    price: "199.00",
+    priceCurrency: "EUR",
+    availability: "https://schema.org/LimitedAvailability",
+    url: "https://nicoguyon.gumroad.com/l/workshop-premier-agent-ia",
+    validFrom: "2026-02-01T00:00:00+01:00",
+  },
+  image: `${BASE_URL}/og-image.jpg`,
+  inLanguage: "fr-FR",
+  maximumAttendeeCapacity: 20,
+};
+
 export default function JsonLd() {
   const schemas = [
     websiteSchema,
     organizationSchema,
     personSchema,
     ...productSchemas,
+    workshopEventSchema,
   ];
 
   return (

@@ -5,6 +5,9 @@ import { useEffect, useState } from "react";
 // Lancement le 28 février 2026 à 09:00 heure de Paris
 const LAUNCH_DATE = new Date("2026-02-28T09:00:00+01:00");
 
+// Après 14 jours, la barre post-lancement disparaît d'elle-même
+const LAUNCH_BAR_EXPIRY = new Date("2026-03-14T00:00:00+01:00");
+
 interface TimeLeft {
   days: number;
   hours: number;
@@ -39,33 +42,86 @@ export default function AnnouncementBar() {
   const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
-    // Vérifier si déjà fermé (session storage)
+    const now = new Date();
+
+    // Barre post-lancement : clé séparée + expiry automatique
+    if (time.launched || now >= LAUNCH_DATE) {
+      if (now >= LAUNCH_BAR_EXPIRY) {
+        setDismissed(true);
+        return;
+      }
+      if (sessionStorage.getItem("launch-bar-dismissed") === "1") {
+        setDismissed(true);
+        return;
+      }
+      document.documentElement.style.setProperty("--announcement-bar-height", "40px");
+      return;
+    }
+
+    // Barre countdown (pré-lancement)
     if (sessionStorage.getItem("announcement-dismissed") === "1") {
       setDismissed(true);
       return;
     }
 
-    // Notifier les autres composants de la hauteur de la barre
     document.documentElement.style.setProperty("--announcement-bar-height", "40px");
 
     const timer = setInterval(() => {
-      setTime(getTimeLeft());
+      const updated = getTimeLeft();
+      setTime(updated);
+      // Quand le countdown atteint 0, reset dismissed pour montrer la barre lancement
+      if (updated.launched && dismissed) {
+        setDismissed(false);
+      }
     }, 1000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+    return () => clearInterval(timer);
+  }, [time.launched, dismissed]);
 
   function handleDismiss() {
     setDismissed(true);
-    sessionStorage.setItem("announcement-dismissed", "1");
+    if (time.launched) {
+      sessionStorage.setItem("launch-bar-dismissed", "1");
+    } else {
+      sessionStorage.setItem("announcement-dismissed", "1");
+    }
     document.documentElement.style.setProperty("--announcement-bar-height", "0px");
   }
 
-  // Cacher après le lancement ou si fermé
-  if (dismissed || time.launched) return null;
+  if (dismissed) return null;
 
+  // ── BARRE POST-LANCEMENT ─────────────────────────────────────────────
+  if (time.launched) {
+    return (
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-600 text-white">
+        <div className="max-w-6xl mx-auto px-4 h-10 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold min-w-0 flex-1">
+            <span className="shrink-0">🎉</span>
+            <span className="truncate">Jean-Claw est officiellement lancé ! Découvrez nos produits IA →</span>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <a
+              href="#produits"
+              className="hidden sm:block bg-white text-emerald-700 hover:text-emerald-900 px-3 py-1 rounded-md text-xs font-bold transition hover:bg-emerald-50"
+            >
+              Voir les produits →
+            </a>
+            <button
+              onClick={handleDismiss}
+              aria-label="Fermer"
+              className="p-1 rounded hover:bg-emerald-400/40 transition text-white/80 hover:text-white"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── BARRE COUNTDOWN (pré-lancement) ─────────────────────────────────
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 text-navy-950">
       <div className="max-w-6xl mx-auto px-4 h-10 flex items-center justify-between gap-4">
