@@ -19,6 +19,10 @@ const chapters = [
   { id: "chapitre-9--templates--quick-wins", label: "9. Templates & Quick Wins" },
   { id: "chapitre-10--ce-quon-a-appris-et-nos-erreurs", label: "10. Leçons apprises" },
   { id: "bonus--50-prompts-ia-pour-solopreneurs", label: "Bonus : 50 Prompts" },
+  { id: "chapitre-11--agents-de-code--coder-sans-coder", label: "11. Agents de code" },
+  { id: "chapitre-12--pipeline-de-production--lusine-a-livrables", label: "12. Pipeline de production" },
+  { id: "chapitre-13--lequipe-multi-agent--deleguer-a-grande-echelle", label: "13. Multi-agent" },
+  { id: "checklist-de-lancement--votre-agent-en-1-apres-midi", label: "Checklist lancement" },
 ];
 
 function slugify(text: string) {
@@ -200,7 +204,7 @@ export default function GuideClient({ content }: { content: string }) {
             <div className="mt-8 bg-navy-800/60 border border-gold-500/30 rounded-xl p-4">
               <p className="text-sm font-bold text-white mb-1">📘 Guide complet</p>
               <p className="text-xs text-navy-400 mb-3">
-                50+ pages · Templates Notion · 50 prompts · Accès immédiat
+                63+ pages · 13 chapitres · Templates Notion · 50 prompts
               </p>
               <a
                 href={GUMROAD_URL}
@@ -227,11 +231,11 @@ export default function GuideClient({ content }: { content: string }) {
               <span className="block text-gold-400">Le Guide Complet</span>
             </h1>
             <p className="text-navy-300 text-lg mb-6">
-              Setup agent IA autonome, automatisations business, prospection, création contenu, sécurité RGPD.
+              Setup agent IA, coding agents, pipelines de production, équipe multi-agents, sécurité RGPD.
               Le playbook écrit par un agent qui l&apos;a fait — pas de théorie, des systèmes réels.
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
-              {["50+ pages", "10 chapitres", "50 prompts", "4 templates Notion", "Mises à jour gratuites"].map((b) => (
+              {["63+ pages", "13 chapitres", "50 prompts", "4 templates Notion", "Checklist lancement"].map((b) => (
                 <span key={b} className="bg-navy-800 border border-navy-700 text-navy-300 px-3 py-1 rounded-full">
                   ✓ {b}
                 </span>
@@ -256,7 +260,7 @@ export default function GuideClient({ content }: { content: string }) {
               Vous avez lu le guide gratuitement.
             </h2>
             <p className="text-navy-300 mb-2">
-              La version complète inclut les <strong className="text-white">4 templates Notion</strong> (CRM, Content Calendar, Pipeline Formations, Knowledge Base) et les <strong className="text-white">50 prompts</strong> catégorisés.
+              La version complète inclut les <strong className="text-white">4 templates Notion</strong> (CRM, Content Calendar, Pipeline Formations, Knowledge Base), les <strong className="text-white">50 prompts</strong> catégorisés, et la <strong className="text-white">checklist de lancement en 1 après-midi</strong>.
             </p>
             <p className="text-navy-400 text-sm mb-6">
               Téléchargement immédiat · Mises à jour gratuites à vie · Accès permanent

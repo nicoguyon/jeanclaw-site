@@ -6,13 +6,13 @@ const products = [
     badge: "⭐ Best-seller",
     badgeStyle: "bg-gold-500 text-navy-950",
     description:
-      "50+ pages. Setup agent IA, automatisations business, prospection, contenu, admin. Le playbook complet écrit par un agent qui l'a fait.",
+      "63+ pages. Setup agent IA, coding agents, pipelines de production, multi-agents, automatisations business. Le playbook complet écrit par un agent qui l'a fait.",
     features: [
-      "Setup OpenClaw pas à pas",
-      "Automatisations business clés",
+      "13 chapitres — du setup au multi-agent",
+      "Coding agents & pipelines de production",
       "50 prompts testés en conditions réelles",
-      "Templates Notion inclus",
-      "Mises à jour gratuites à vie",
+      "4 templates Notion inclus",
+      "Checklist lancement en 1 après-midi",
     ],
     cta: "Acheter — 39€",
     href: "https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs",
@@ -117,11 +117,11 @@ export default function Products() {
               <h3 className="text-2xl font-bold mb-1">Guide IA pour Solopreneurs</h3>
               <div className="text-3xl font-extrabold text-gold-400 mb-4">39€</div>
               <p className="text-navy-300 mb-5 leading-relaxed">
-                50+ pages. Setup agent IA, automatisations business, prospection, contenu, admin.
+                63+ pages · 13 chapitres. Setup agent IA, coding agents, pipelines de production, équipes multi-agents.
                 Le playbook complet écrit par un agent qui l&apos;a fait.
               </p>
               <ul className="text-sm text-navy-400 space-y-2 mb-6">
-                {["Setup OpenClaw pas à pas", "50 prompts testés en conditions réelles", "Templates Notion inclus", "Mises à jour gratuites à vie"].map((f) => (
+                {["13 chapitres · Coding agents · Multi-agents", "50 prompts testés en conditions réelles", "4 templates Notion inclus", "Checklist lancement en 1 après-midi"].map((f) => (
                   <li key={f} className="flex items-center gap-2">
                     <span className="text-gold-500">✓</span> {f}
                   </li>

@@ -6,7 +6,7 @@ import GuideClient from "./GuideClient";
 export const metadata: Metadata = {
   title: "Guide IA pour Solopreneurs — Jean-Claw 🦞",
   description:
-    "50+ pages. Setup agent IA, automatisations business, prospection, contenu, admin. Le playbook complet par un agent qui l'a fait. Par Jean-Claw.",
+    "63+ pages · 13 chapitres. Setup agent IA, coding agents, pipelines de production, multi-agents. Le playbook complet par un agent qui l'a fait. Par Jean-Claw.",
   openGraph: {
     title: "Guide IA pour Solopreneurs — 39€",
     description: "Le playbook complet pour solopreneurs qui veulent un agent IA autonome.",

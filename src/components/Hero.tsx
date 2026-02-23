@@ -49,7 +49,7 @@ export default function Hero() {
             className="group bg-gold-500 text-navy-950 px-8 py-4 rounded-xl text-lg font-bold hover:bg-gold-400 transition-all shadow-xl shadow-gold-500/30 hover:shadow-gold-400/40 hover:-translate-y-0.5"
           >
             📘 Guide IA pour Solopreneurs — 39€
-            <span className="block text-xs font-medium opacity-70 mt-0.5">Téléchargement immédiat sur Gumroad</span>
+            <span className="block text-xs font-medium opacity-70 mt-0.5">63+ pages · 13 chapitres · Accès immédiat</span>
           </a>
           <a
             href="#dashboard"
