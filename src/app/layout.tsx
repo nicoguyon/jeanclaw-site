@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import "./globals.css";
 
-const BASE_URL = "https://jeanclaw-site.vercel.app";
+const BASE_URL = "https://jean-claw.ai";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
