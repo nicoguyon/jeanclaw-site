@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import AnnouncementBar from "@/components/AnnouncementBar";
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
 
 const BASE_URL = "https://jean-claw.ai";
@@ -47,6 +48,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
+      <head>
+        <JsonLd />
+      </head>
       <body className="antialiased">
         <AnnouncementBar />
         {children}
