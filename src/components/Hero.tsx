@@ -78,12 +78,46 @@ export default function Hero() {
             Entrepreneur. Fan de Jean-Claude Van Damme.
           </motion.p>
 
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.6 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <a
+              href="https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:-translate-y-0.5"
+              style={{
+                background: "#DC2626",
+                color: "white",
+                boxShadow: "0 8px 24px rgba(220,38,38,0.25)",
+              }}
+            >
+              Guide OpenClaw — 39€
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17L17 7M17 7H7M17 7v10" />
+              </svg>
+            </a>
+            <a
+              href="#offre"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-colors"
+              style={{ color: "#525252" }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#A3A3A3")}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#525252")}
+            >
+              Découvrir ↓
+            </a>
+          </motion.div>
+
           {/* Scroll hint */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="mt-12 flex items-center gap-3 text-xs tracking-widest uppercase"
+            transition={{ delay: 1.8, duration: 0.8 }}
+            className="mt-10 flex items-center gap-3 text-xs tracking-widest uppercase"
             style={{ color: "#525252" }}
           >
             <span className="w-8 h-px" style={{ background: "#525252" }} />

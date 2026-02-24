@@ -265,7 +265,7 @@ function ConfigBlock() {
   ];
 
   const stack = [
-    { color: "#DC2626", text: "Claude Opus 4.6 + 50+ skills" },
+    { color: "#DC2626", text: "Claude Sonnet 4.6 + 50+ skills" },
     { color: "#E87722", text: "Mac Mini M4 Pro — 24/7" },
     { color: "#525252", text: "OpenClaw framework" },
   ];
