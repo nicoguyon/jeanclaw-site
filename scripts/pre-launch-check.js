@@ -194,6 +194,15 @@ check("OpenGraph dans layout.tsx", () =>
 check("Twitter card dans layout.tsx", () =>
   fileContains("src/app/layout.tsx", "twitter")
 );
+check("robots.ts présent (SEO crawl)", () =>
+  fileExists("src/app/robots.ts")
+);
+check("sitemap.ts présent (SEO index)", () =>
+  fileExists("src/app/sitemap.ts")
+);
+check("sitemap pointe vers jean-claw.ai", () =>
+  fileContains("src/app/sitemap.ts", "jean-claw.ai")
+);
 
 // ─── 8. Git ───────────────────────────────────────────────────────────────────
 console.log("\n🔀  Git");
