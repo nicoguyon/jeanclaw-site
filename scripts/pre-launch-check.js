@@ -84,7 +84,7 @@ check("public/images/jeanclaw-team.webp", () =>
 
 // ─── 2. Composants actifs ─────────────────────────────────────────────────────
 console.log("\n🧩  Composants actifs");
-const activeComponents = ["Hero", "Offre", "Coulisses", "AVenir", "Footer"];
+const activeComponents = ["Hero", "Offre", "Coulisses", "AVenir", "Footer", "AnnouncementBar"];
 for (const c of activeComponents) {
   check(`src/components/${c}.tsx existe`, () =>
     fileExists(`src/components/${c}.tsx`)
@@ -170,6 +170,15 @@ check("Claude Sonnet (pas Opus) dans Offre.tsx", () => {
   fileNotContains("src/components/Offre.tsx", "Opus");
   return true;
 });
+check("JSON-LD schema dans layout.tsx", () =>
+  fileContains("src/app/layout.tsx", "application/ld+json")
+);
+check("AnnouncementBar dans layout.tsx", () =>
+  fileContains("src/app/layout.tsx", "AnnouncementBar")
+);
+check("LAUNCH_DATE dans AnnouncementBar.tsx", () =>
+  fileContains("src/components/AnnouncementBar.tsx", "2026-02-28")
+);
 
 // ─── 7. SEO ───────────────────────────────────────────────────────────────────
 console.log("\n🔍  SEO");

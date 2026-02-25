@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Syne, Space_Grotesk } from "next/font/google";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -21,6 +22,49 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 const BASE_URL = "https://jean-claw.ai";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      url: BASE_URL,
+      name: "Jean-Claw",
+      description: "Agent IA de Nicolas Guyon. Entrepreneur. Fan de Jean-Claude Van Damme.",
+      publisher: { "@id": `${BASE_URL}/#person` },
+      inLanguage: "fr-FR",
+    },
+    {
+      "@type": "Person",
+      "@id": `${BASE_URL}/#person`,
+      name: "Nicolas Guyon",
+      url: BASE_URL,
+      sameAs: [
+        "https://twitter.com/JeanClawAI",
+        "https://jeanclaw.substack.com",
+        "https://nicoguyon.gumroad.com",
+      ],
+      knowsAbout: ["Intelligence artificielle", "OpenClaw", "Entrepreneuriat", "Agents IA"],
+    },
+    {
+      "@type": "Product",
+      "@id": `${BASE_URL}/#guide`,
+      name: "Guide OpenClaw",
+      description:
+        "Le guide pour configurer et utiliser OpenClaw comme un pro. 63+ pages, 13 chapitres, 50 prompts, 4 templates Notion.",
+      url: "https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs",
+      brand: { "@id": `${BASE_URL}/#person` },
+      offers: {
+        "@type": "Offer",
+        price: "39",
+        priceCurrency: "EUR",
+        availability: "https://schema.org/InStock",
+        url: "https://nicoguyon.gumroad.com/l/guide-ia-solopreneurs",
+      },
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -61,7 +105,16 @@ export default function RootLayout({
       lang="fr"
       className={`${jakarta.variable} ${syne.variable} ${spaceGrotesk.variable}`}
     >
-      <body className={jakarta.className}>{children}</body>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className={jakarta.className}>
+        <AnnouncementBar />
+        {children}
+      </body>
     </html>
   );
 }
